@@ -3,8 +3,10 @@ package com.codepath.bestsellerlistapp
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.codepath.bestsellerlistapp.R.id
 
 /**
@@ -31,6 +33,10 @@ class BestSellerBooksRecyclerViewAdapter(
         var mItem: BestSellerBook? = null
         val mBookTitle: TextView = mView.findViewById<View>(id.book_title) as TextView
         val mBookAuthor: TextView = mView.findViewById<View>(id.book_author) as TextView
+        val mBookRanking: TextView = mView.findViewById<View>(id.ranking) as TextView
+        val mBookDescription: TextView = mView.findViewById<View>(id.book_description) as TextView
+        val mBookImage: ImageView = mView.findViewById<View>(id.book_image) as ImageView
+
 
         override fun toString(): String {
             return mBookTitle.toString() + " '" + mBookAuthor.text + "'"
@@ -41,11 +47,20 @@ class BestSellerBooksRecyclerViewAdapter(
      * This lets us "bind" each Views in the ViewHolder to its' actual data!
      */
     override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        val book = books[position]
+        val book = books[position]  //retrieve individual books to be displayed in the recycler view component
 
+        //set the text view content to the strings from the json response
         holder.mItem = book
         holder.mBookTitle.text = book.title
         holder.mBookAuthor.text = book.author
+        holder.mBookDescription.text = book.description
+        holder.mBookRanking.text = book.rank.toString()  //since rank is originally an integer, needs to be converted to a string
+
+        //Use glide to display the corresponding image within the image view section of the layout
+        Glide.with(holder.mView)
+            .load(book.bookImageUrl)
+            .centerInside()
+            .into(holder.mBookImage)
 
         holder.mView.setOnClickListener {
             holder.mItem?.let { book ->
