@@ -182,7 +182,11 @@ class BestSellerBooksFragment : Fragment(), OnListFragmentInteractionListener {
      * What happens when a particular book is clicked.
      */
     override fun onItemClick(item: BestSellerBook) {
+        //displays the title of the book
         Toast.makeText(context, "test: " + item.title, Toast.LENGTH_LONG).show()
+
+        //Display a toast message to redirect to the amazon url
+        Toast.makeText(context, "Redirecting to Amazon to Buy" + item.title, Toast.LENGTH_LONG).show()
     }
 
 }

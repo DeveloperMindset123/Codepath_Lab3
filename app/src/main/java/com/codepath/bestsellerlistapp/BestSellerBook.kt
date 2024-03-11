@@ -33,4 +33,6 @@ class BestSellerBook {
     var description : String? = null
 
     //TODO-STRETCH-GOALS amazonUrl
+    @SerializedName("amazon_product_url")  //the string value within the SerializedName needs to match the corresponding json response category
+    var amazonUrl : String? = null
 }

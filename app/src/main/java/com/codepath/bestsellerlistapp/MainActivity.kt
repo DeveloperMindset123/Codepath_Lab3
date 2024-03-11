@@ -10,10 +10,13 @@ import com.codepath.bestsellerlistapp.R.id
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        //instantiate the button view in order to make the amazon
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val supportFragmentManager = supportFragmentManager
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(id.content, BestSellerBooksFragment(), null).commit()
+
     }
 }
